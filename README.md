@@ -18,3 +18,11 @@ This is a maven project and requires maven to work
 3. Install dependencies
 
 `mvn install`
+
+4. Build Project
+
+`mvn package`
+
+5. Run Project
+
+`java -cp target/lida-0.0.1-SNAPSHOT-jar-with-dependencies.jar lida.Main`
