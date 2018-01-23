@@ -19,7 +19,7 @@ import spark.template.mustache.MustacheTemplateEngine;
 public class Main {
 	public static void main(String[] args) {
 		
-		MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
+		final MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
 		
 		final Morphia morphia = new Morphia();
 		morphia.mapPackage("model");
