@@ -27,8 +27,9 @@ public class UserController {
 	
 	public static ModelAndView login() {
 		
-		final User behailu = new User();
+		User behailu = new User();
 		behailu.setFirstName("behailu");
+		
 		datastore.save(behailu);
 		
 		
