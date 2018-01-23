@@ -26,6 +26,10 @@
   		<artifactId>mongodb-driver</artifactId>
   		<version>3.6.1</version>
   	</dependency>
+  	<dependency>
+  		<artifactId>slf4j-simple</artifactId>
+  		<groupId>org.slf4j</groupId>
+  		<version>1.7.25</version></dependency>
   </dependencies>
   <build>
     <plugins>
