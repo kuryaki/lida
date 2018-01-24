@@ -1,18 +1,14 @@
-.container {
-    height: 100%;
-    width: 100%;
+html, body {
+    height:100%;
 }
 
-#home-form {
-    position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    display: inline-flex;
+body {
+    display:flex;
+    align-items:center;
 }
 
 #register-form {
-    border-right: thick solid #070707;
+    border-right: thick dotted whitesmoke;
     padding-right: 80;
 }
 
