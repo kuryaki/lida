@@ -14,7 +14,10 @@ public class Main {
 		
 		staticFiles.location("/static");
         
-        get("/hello", (req, res) -> UserController.register(), new MustacheTemplateEngine());
+        get("/", (req, res) -> UserController.loginAndRegisterScreen(), new MustacheTemplateEngine());
+        
+        post("/register", (req, res) -> UserController.register(req, res), new MustacheTemplateEngine());
+        post("/login", (req, res) -> UserController.login(req, res), new MustacheTemplateEngine());
     }
 	
 }

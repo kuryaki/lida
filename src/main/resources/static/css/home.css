@@ -1,0 +1,21 @@
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+#home-form {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: inline-flex;
+}
+
+#register-form {
+    border-right: thick solid #070707;
+    padding-right: 80;
+}
+
+#login-form {
+    padding-left: 80;
+}
