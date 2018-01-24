@@ -18,10 +18,11 @@ public class User {
 	private String address;
 	private String password;
 	
-
-	public User() {}
+	// Protected Constructors
+	
+	User() {}
     
-    public User(ObjectId id, String firstName, String lastName, String email, String phone, String address,
+    User(ObjectId id, String firstName, String lastName, String email, String phone, String address,
 			String password) {
 		super();
 		this.id = id;
@@ -32,6 +33,16 @@ public class User {
 		this.address = address;
 		this.password = password;
 	}
+
+	User(String firstName, String lastName, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
+	
+	// Getters and Setters
 
 	public ObjectId getId() {
 		return id;
@@ -96,6 +107,5 @@ public class User {
     public void setSomeId(ObjectId someId) { 
         this.id = someId; 
     } 
-
 
 }
