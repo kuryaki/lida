@@ -12,8 +12,13 @@
   <title>Lida</title>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark">
+<body class="fixed-nav sticky-footer">
   <div class="container">
+  	{{#error}}
+  	<div class="alert alert-danger" role="alert">
+	  {{ error }}
+	</div>
+	{{/error}}
     <div id="home-form" class="row">
       <form id="register-form" action="/register" method="post" class="col-12 col-md-6">
         <div class="card">
@@ -25,7 +30,7 @@
             </div>
             <div class="form-group">
               <label for="register-lastname">Last Name</label>
-              <input type="text" class="form-control" id="register-lastname" name="register[lastname]" placeholder="Doe">
+              <input type="text" class="form-control" id="register-lastname" name="register-lastname-" placeholder="Doe">
             </div>
             <div class="form-group">
               <label for="register-email">Email address</label>
@@ -47,11 +52,11 @@
           <div class="card-body">
             <div class="form-group">
               <label for="login-email">Email address</label>
-              <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+              <input type="email" class="form-control" id="login-email" name="login-email" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="login-password">Password</label>
-              <input type="password" class="form-control" id="login-password" placeholder="Password">
+              <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password">
             </div>
           </div>
           <div class="card-footer">

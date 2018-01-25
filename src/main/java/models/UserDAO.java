@@ -40,4 +40,20 @@ public class UserDAO extends BasicDAO<User, ObjectId> {
 		return found;
 	}
 
+	public static User findUserById(String userId) {
+		Query<User> query = datastore.createQuery(User.class)
+				.field("id").equal(new ObjectId(userId));
+		return query.get();
+	}
+
+	public static User findUserByEmail(String email) {
+		
+		Query<User> query = datastore.createQuery(User.class)
+				.field("email").equal(email);
+		
+		User found = query.get();
+		
+		return found;
+	}
+
 }
