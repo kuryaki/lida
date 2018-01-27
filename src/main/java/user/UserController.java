@@ -59,10 +59,10 @@ public class UserController {
 		}
 		
 		// Use DAO to insert data into DB
-		User newUser = UserDAO.createUser(firstName, lastName, email, password);
+		User user = UserDAO.createUser(firstName, lastName, email, password);
 		
         // Create Session
-        req.session().attribute("userId", newUser.getId().toString());
+        req.session().attribute("userId", user.getId().toString());
 		
         // Redirect to Dashboard
         res.redirect("/dashboard");

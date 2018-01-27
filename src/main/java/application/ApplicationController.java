@@ -1,12 +1,14 @@
 package application;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lida.Lida;
 import spark.Request;
 import spark.Response;
 import user.User;
+import user.UserDAO;
 
 public class ApplicationController {
 	
@@ -18,14 +20,15 @@ public class ApplicationController {
 		
 		if (userId != null) {
 			
-			User user = ApplicationDAO.findUserApplications(userId);
+			User user = UserDAO.findUserById(userId);
+			List<Application> applications = ApplicationDAO.findUserApplicationsByUserId(userId);
 			
-			if (user != null) {
-				// Render Template
-				map.put("user", user);
-				
-				return Lida.render(map, "dashboard.html");
-			}
+			map.put("user", user);
+			map.put("applications", applications);
+			
+			String result = Lida.render(map, "dashboard.html");
+			
+			return result;
 		}
 		
 		res.redirect("/");

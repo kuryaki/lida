@@ -22,17 +22,15 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		super(Application.class, datastore);
 	}
 
-	public static User findUserApplications(String userId) {
+	public static List<Application> findUserApplicationsByUserId(String userId) {
 		
-		User user = UserDAO.findUserById(userId);
-		
-		Query<Application> query = datastore
-				.find(Application.class)
-				.field("user")
-				.equal(new Key<User>(User.class, userId, null));
+//		Query<Application> query = datastore
+//				.find(Application.class)
+//				.field("user")
+//				.equal();
 	
 		// TODO populate companies
-		List<Application> applications = new ArrayList<Application>(query.asList()); 
+		List<Application> applications = new ArrayList<Application>(); 
 
 		// TODO remove fake data
 		Company google = new Company("google", "https://www.google.com");
@@ -41,10 +39,10 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		Company facebook = new Company("facebook", "https://www.facebook.com");
 		applications.add(new Application("Java developer", facebook, "Palo Alto", "CA"));
 		
-		user.setApplications(applications);
+		return applications;
 		
-		return user;
 	}
+	
 	
 
 	public static Application createApplication(String title, String description, String source, User user, Company company) {
@@ -53,6 +51,6 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		
 		return application;
 	}
-	
+
 
 }

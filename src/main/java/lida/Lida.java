@@ -33,8 +33,8 @@ public class Lida {
         
     }
 
-	public static String render(Map<String, Object> map, String string) {
-		return new MustacheTemplateEngine().render(new ModelAndView(map, "home.html"));
+	public static String render(Map<String, Object> map, String template) {
+		return new MustacheTemplateEngine().render(new ModelAndView(map, template));
 	}
 	
 }
