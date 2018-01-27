@@ -1,7 +1,12 @@
-package models;
+package user;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
+
+import application.Application;
 
 @Entity("users")
 @Indexes(
@@ -18,11 +23,13 @@ public class User {
 	private String address;
 	private String password;
 	
+	private List<Application> applications;
+	
 	// Protected Constructors
 	
-	User() {}
+	public User() {}
     
-    User(ObjectId id, String firstName, String lastName, String email, String phone, String address,
+    public User(ObjectId id, String firstName, String lastName, String email, String phone, String address,
 			String password) {
 		super();
 		this.id = id;
@@ -34,7 +41,7 @@ public class User {
 		this.password = password;
 	}
 
-	User(String firstName, String lastName, String email, String password) {
+	public User(String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -42,8 +49,10 @@ public class User {
 		this.password = password;
 	}
 	
+	
+	
 	// Getters and Setters
-
+	
 	public ObjectId getId() {
 		return id;
 	}
@@ -100,12 +109,12 @@ public class User {
 		this.password = password;
 	}
 
-	public ObjectId getSomeId() { 
-        return id; 
-    } 
-    
-    public void setSomeId(ObjectId someId) { 
-        this.id = someId; 
-    } 
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
 
 }

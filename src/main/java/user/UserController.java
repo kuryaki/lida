@@ -1,17 +1,17 @@
-package controllers;
+package user;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import models.User;
-import models.UserDAO;
+import lida.Lida;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import spark.template.mustache.MustacheTemplateEngine;
 
 public class UserController {
 	
-	public static ModelAndView login(Request req, Response res) {
+	public static String login(Request req, Response res) {
 		
 		// Obtain request parameters
 		String email = req.queryParams("login-email");
@@ -21,7 +21,7 @@ public class UserController {
 		User user = UserDAO.findUserByEmailAndPassword(email, password);
 		
 		// Create HashMap for template
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (user != null) { // Authenticated
 				       
@@ -36,11 +36,11 @@ public class UserController {
 			
 			// Render Template
 			map.put("error", "Bad Credentials");
-			return new ModelAndView(map, "home.html");
+			return Lida.render(map, "home.html");
 		}
 	}
 	
-	public static ModelAndView register(Request req, Response res) {
+	public static String register(Request req, Response res) {
 		
 		// Obtain request parameters
 		String firstName = req.queryParams("register-firstname");
@@ -49,7 +49,7 @@ public class UserController {
 		String password = req.queryParams("register-password");
 		
 		// Create HashMap for template
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		// Use DAO to get data from DB
 		User existingUser = UserDAO.findUserByEmail(email);
@@ -57,7 +57,7 @@ public class UserController {
 		if (existingUser != null) { // existing
 			// Render Template
 			map.put("error", "User already created");
-			return new ModelAndView(map, "home.html");
+			return Lida.render(map, "home.html");
 		}
 		
 		// Use DAO to insert data into DB
@@ -71,19 +71,30 @@ public class UserController {
         return null;
 	}
 	
-	public static ModelAndView loginAndRegisterScreen() {
+	public static String loginAndRegisterScreen() {
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return new ModelAndView(map, "home.html");
+		return Lida.render(map, "home.html");
 	}
 
-	public static ModelAndView logout(Request req, Response res) {
+	public static String logout(Request req, Response res) {
     		
-		Map<String, String> map = new HashMap<String, String>();
-		
 		req.session().removeAttribute("userId");
+		res.redirect("/");
 		
-		return new ModelAndView(map, "home.html");
+		return null;
+	}
+
+	public static User createTestData(Request req, Response res) {
+		
+		// Obtain request parameters
+		String email = req.queryParams("login-email");
+		String password = req.queryParams("login-password");
+		
+		// Use DAO to get data from DB
+		User user = UserDAO.findUserByEmailAndPassword(email, password);
+		
+		return user;
 	}
 }

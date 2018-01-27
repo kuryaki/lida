@@ -1,4 +1,3 @@
-package lida;
 
 
 import org.mongodb.morphia.Datastore;
