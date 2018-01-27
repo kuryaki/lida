@@ -2,18 +2,11 @@ package lida;
 
 import static spark.Spark.*;
 
-import java.util.List;
 import java.util.Map;
 
-import application.Application;
 import application.ApplicationController;
-import company.Company;
-import company.CompanyController;
 import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
 import spark.template.mustache.MustacheTemplateEngine;
-import user.User;
 import user.UserController;
 
 public class Lida {
