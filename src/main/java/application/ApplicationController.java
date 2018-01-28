@@ -30,7 +30,7 @@ public class ApplicationController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		User user = UserDAO.findUserById(userId);
-		List<Application> applications = ApplicationDAO.findUserApplicationsByUser(user);
+		List<Application> applications = ApplicationDAO.findJobApplicationsByUser(user);
 		
 		map.put("user", user);
 		map.put("applications", applications);

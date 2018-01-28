@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Key;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
 import company.Company;
 import lida.DB;
 import user.User;
-import user.UserDAO;
 
 public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 	
@@ -22,19 +20,12 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		super(Application.class, datastore);
 	}
 
-	public static List<Application> findUserApplicationsByUser(User user) {
+	public static List<Application> findJobApplicationsByUser(User user) {
 		
-		
-		Query<Application> query = datastore.
-				find(Application.class)
-				.disableValidation()
-				.field("user")
-				.equal(new Key<>(User.class, "users" ,user.getId()));
-		
+		Query<Application> query = datastore.createQuery(Application.class).filter("user", user);
 	
 		// TODO populate companies
 		List<Application> applications = query.asList(); 
-
 		
 		return applications;
 	}
