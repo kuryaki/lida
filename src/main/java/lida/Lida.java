@@ -18,18 +18,24 @@ public class Lida {
 		
 		staticFiles.location("/static");
         
-		// Unauthenticated routes
+		// Home
         get("/", (req, res) -> UserController.loginAndRegisterScreen());
-        get("/register", (req, res) -> UserController.loginAndRegisterScreen());
-        get("/login", (req, res) -> UserController.loginAndRegisterScreen());
         
+        // Register
+        get("/register", (req, res) -> UserController.loginAndRegisterScreen());
         post("/register", (req, res) -> UserController.register(req, res));
+        
+        // Login
+        get("/login", (req, res) -> UserController.loginAndRegisterScreen());
         post("/login", (req, res) -> UserController.login(req, res));
         
-        // Authenticated routes
+        /// Logout
         get("/logout", (req, res) -> UserController.logout(req, res));
-        get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
         
+        // Applications
+        get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
+        get("/applications", (req, res) -> ApplicationController.createJobApplicationForm(req, res));
+        post("/applications", (req, res) -> ApplicationController.createJobApplication(req, res));
         
     }
 

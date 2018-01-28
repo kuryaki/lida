@@ -2,6 +2,10 @@ html, body {
     height:100%;
 }
 
+.content-wrapper {
+    margin-left: 0px;
+}
+
 body {
     display:flex;
     align-items:center;

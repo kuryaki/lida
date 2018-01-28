@@ -24,10 +24,10 @@ public class CompanyDAO extends BasicDAO<Company, ObjectId> {
 		return company;
 	}
 	
-	public static Company findUserById(String userId) {
+	public static Company findCompanyByName(String name) {
 		
 		Query<Company> query = datastore.createQuery(Company.class)
-				.field("id").equal(new ObjectId(userId));
+				.field("name").equal(name);
 		
 		return query.get();
 	}

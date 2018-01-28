@@ -64,6 +64,18 @@ public class Application {
 	}
 
 
+	public Application(String title, String description, String source, String city, String state, User user,
+			Company company) {
+		this.title = title;
+		this.description = description;
+		this.source = source;
+		this.city = city;
+		this.state = state;
+		this.company = company;
+		this.user = user;
+	}
+
+
 	public ObjectId getId() {
 		return id;
 	}

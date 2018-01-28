@@ -22,27 +22,22 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		super(Application.class, datastore);
 	}
 
-	public static List<Application> findUserApplicationsByUserId(String userId) {
+	public static List<Application> findUserApplicationsByUser(User user) {
 		
-//		Query<Application> query = datastore
-//				.find(Application.class)
-//				.field("user")
-//				.equal();
+		
+		Query<Application> query = datastore.
+				find(Application.class)
+				.disableValidation()
+				.field("user")
+				.equal(new Key<>(User.class, "users" ,user.getId()));
+		
 	
 		// TODO populate companies
-		List<Application> applications = new ArrayList<Application>(); 
+		List<Application> applications = query.asList(); 
 
-		// TODO remove fake data
-		Company google = new Company("google", "https://www.google.com");
-		applications.add(new Application("Senior web developer", google, "San Francisco", "CA"));
-		
-		Company facebook = new Company("facebook", "https://www.facebook.com");
-		applications.add(new Application("Java developer", facebook, "Palo Alto", "CA"));
 		
 		return applications;
-		
 	}
-	
 	
 
 	public static Application createApplication(String title, String description, String source, User user, Company company) {
@@ -52,5 +47,12 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		return application;
 	}
 
+	public static void createApplication(String title, String description, String source, String city, String state,
+			User user, Company company) {
+		
+		Application application = new Application(title, description, source, city, state, user, company);
+		
+		datastore.save(application);
+	}
 
 }
