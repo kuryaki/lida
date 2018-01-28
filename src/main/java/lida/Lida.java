@@ -5,6 +5,7 @@ import static spark.Spark.*;
 import java.util.Map;
 
 import application.ApplicationController;
+import company.CompanyController;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 import user.UserController;
@@ -36,6 +37,10 @@ public class Lida {
         get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
         get("/applications", (req, res) -> ApplicationController.createJobApplicationForm(req, res));
         post("/applications", (req, res) -> ApplicationController.createJobApplication(req, res));
+        
+        // Companies
+        get("/companies", (req, res) -> CompanyController.createCompanyForm(req, res));
+        post("/companies", (req, res) -> CompanyController.createCompany(req, res));
         
     }
 

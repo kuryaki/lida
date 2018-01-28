@@ -54,18 +54,14 @@ public class ApplicationController {
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<Company> companies = new ArrayList<>();
-		
-		companies.add(new Company(new ObjectId(), "Google", "https://www.google.com"));
-		companies.add(new Company(new ObjectId(), "Facebook", "https://www.facebook.com"));
-		companies.add(new Company(new ObjectId(), "Amazon", "https://www.amazon.com"));
+		List<Company> companies = CompanyDAO.getCompanies();
 		
 		map.put("companies", companies);
 		
 		return Lida.render(map, "applications.html");
 	}
 
-	public static Object createJobApplication(Request req, Response res) {
+	public static String createJobApplication(Request req, Response res) {
 		
 		// isAuthenticated
 		String userId = req.session().attribute("userId");

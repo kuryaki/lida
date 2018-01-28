@@ -1,10 +1,13 @@
 package company;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
+import application.Application;
 import lida.DB;
 
 public class CompanyDAO extends BasicDAO<Company, ObjectId> {
@@ -30,6 +33,13 @@ public class CompanyDAO extends BasicDAO<Company, ObjectId> {
 				.field("name").equal(name);
 		
 		return query.get();
+	}
+
+	public static List<Company> getCompanies() {
+		
+		Query<Company> query = datastore.find(Company.class);
+		
+		return query.asList();
 	}
 
 }

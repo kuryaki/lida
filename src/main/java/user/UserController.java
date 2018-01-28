@@ -84,15 +84,4 @@ public class UserController {
 		return null;
 	}
 
-	public static User createTestData(Request req, Response res) {
-		
-		// Obtain request parameters
-		String email = req.queryParams("login-email");
-		String password = req.queryParams("login-password");
-		
-		// Use DAO to get data from DB
-		User user = UserDAO.findUserByEmailAndPassword(email, password);
-		
-		return user;
-	}
 }
