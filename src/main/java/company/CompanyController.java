@@ -5,14 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bson.types.ObjectId;
-
-import application.ApplicationDAO;
 import lida.Lida;
 import spark.Request;
 import spark.Response;
-import user.User;
-import user.UserDAO;
 
 public class CompanyController {
 
@@ -30,11 +25,11 @@ public class CompanyController {
 	public static String createCompanyForm(Request req, Response res) {
 		
 		// isAuthenticated
-//		String userId = req.session().attribute("userId");
-//		if (userId == null) {
-//			res.redirect("/");
-//			return null;
-//		}
+		String userId = req.session().attribute("userId");
+		if (userId == null) {
+			res.redirect("/");
+			return null;
+		}
 		
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -45,11 +40,11 @@ public class CompanyController {
 	public static String createCompany(Request req, Response res) {
 		
 		// isAuthenticated
-//		String userId = req.session().attribute("userId");
-//		if (userId == null) {
-//			res.redirect("/");
-//			return null;
-//		}
+		String userId = req.session().attribute("userId");
+		if (userId == null) {
+			res.redirect("/");
+			return null;
+		}
 		
 		// Create HashMap for template
 		String name = req.queryParams("company-name");

@@ -1,0 +1,10 @@
+package followup;
+
+public enum FollowupType {
+	ORAL_INTERVIEW,
+	TECHNICAL_INTERVIEW,
+	TECHNICAL_TEST,
+	PAPER_WORK,
+	MANAGERAL_INTERVIEW,
+	OTHER
+}

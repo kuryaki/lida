@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/metisMenu.min.css">
+  <link rel="stylesheet" href="/css/sb-admin.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/jquery.flexdatalist.css">
+  <link rel="stylesheet" href="/css/tempus-dominus.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <title>Lida</title>
+</head>
+
+<body class="fixed-nav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.html">Follow Up</a>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" href="/logout">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="container" class="container">
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        {{#application}}
+        <form id="followups-form" action="/followups/{{id}}" method="post">
+            <div class="card">
+              <div class="card-header text-center">
+                <h1>{{title}} at {{company.name}}</h1>
+                <h5>{{city}}, {{state}} created {{creationDate}}</h5>
+              </div>
+              {{/application}}
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="followup-contact">Contact</label>
+                    <div class="input-group">
+                      <select class="custom-select" id="followup-contact" name="followup-contact">
+                        <option selected>Choose...</option>
+                        {{#contacts}}
+                        <option value={{id}}>{{name}} - {{email}} - {{phone}}</option>
+                        {{/contacts}}
+                      </select>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Add Contact</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label for="followup-type">Type</label>
+                    <div class="input-group">
+                      <select class="custom-select" id="followup-type" name="followup-type">
+                        <option selected>Choose...</option>
+                        <option value="ORAL_INTERVIEW">Oral Interview</option>
+                        <option value="TECHNICAL_INTERVIEW">Technical Interview</option>
+                        <option value="TECHNICAL_TEST">Technical Test</option>
+                        <option value="MANAGERAL_INTERVIEW">Magager Interview</option>
+                        <option value="PAPER_WORK">Paperwork</option>
+                        <option value="OTHER">Other...</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="datetimepicker">Date</label>
+                    <input type="text" class="form-control datetimepicker-input" id="datetimepicker" name="followup-date" data-toggle="datetimepicker" data-target="#datetimepicker"/>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row justify-content-between no-gutters">
+                  <button type="submit" class="btn btn-primary col-2">Create</button>
+                  <a href="/dashboard" class="btn btn-info col-2" role="button">Cancel</a>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery-3.3.1.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/metisMenu.min.js"></script>
+  <script src="/js/sb-admin-2.js"></script>
+  <script src="/js/jquery.flexdatalist.js"></script>
+  <script src="/js/moment.js"></script>
+  <script src="/js/tempus-dominus.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

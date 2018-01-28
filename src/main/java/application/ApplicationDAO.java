@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
 import company.Company;
+import followup.Followup;
 import lida.DB;
 import user.User;
 
@@ -31,18 +33,23 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 	}
 	
 
-	public static Application createApplication(String title, String description, String source, User user, Company company) {
-		
-		Application application = new Application(title, description, source, user, company);
-		
-		return application;
-	}
-
 	public static void createApplication(String title, String description, String source, String city, String state,
 			User user, Company company) {
 		
-		Application application = new Application(title, description, source, city, state, user, company);
+		Application application = new Application(title, description, source, city, state, user, company, LocalDate.now());
 		
+		datastore.save(application);
+	}
+
+	public static Application findJobApplicationById(String applicationId) {
+		
+		Query<Application> query = datastore.createQuery(Application.class).field("id").equal(new ObjectId(applicationId));
+		
+		return query.get();
+	}
+
+
+	public static void update(Application application) {
 		datastore.save(application);
 	}
 

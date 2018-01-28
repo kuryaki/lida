@@ -50,8 +50,10 @@
                           style="width: 93px;">Location</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending"
                           style="width: 182px;">Create date</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                          aria-label="Salary: activate to sort column ascending" style="width: 163px;">Follow Up Date</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
+                          style="width: 163px;">Follow Up</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
+                          style="width: 163px;">Actions</th>
                       </tr>
                     </thead>
                     {{#applications}}
@@ -60,8 +62,13 @@
                         <td><a href="#">{{title}}</a></td>
                         <td>{{company.name}}</td>
                         <td>{{city}},{{state}}</td>
-                        <td>2009/10/09</td>
-                        <td>2009/10/09</td>
+                        <td>{{creationDate}}</td>
+                        <td>{{lastFollowup.date}}</td>
+                        <td>
+                          <div class="btn-group" role="group" aria-label="Actions">
+                            <a href="/followups/{{id}}" class="btn btn-secondary" role="button">Follow Up</a>
+                          </div>
+                        </td>
                       </tr>
                       {{/applications}}
                     </tbody>

@@ -1,40 +1,46 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 import company.Company;
+import followup.Followup;
 import user.User;
 
 @Entity("applications")
-@Indexes(
-    @Index(fields = @Field("user"))
-)
+@Indexes(@Index(fields = @Field("user")))
 public class Application {
-	
+
 	@Id
 	private ObjectId id;
-	
+
 	@Reference
 	private User user;
-	
+
 	@Reference
 	private Company company;
-	
+
 	private String title;
 	private String description;
 	private String source;
 	private LocalDate creationDate;
 	private String state;
 	private String city;
-	
-	public Application () {}
-	
 
-	public Application(ObjectId id, User user, Company company, String title, String description, String source, LocalDate creationDate, String state,
-			String city) {
+	@Reference
+	private List<Followup> followups;
+	
+	@Reference
+	private Followup lastFollowup;
+
+	public Application() {
+	}
+
+	public Application(ObjectId id, User user, Company company, String title, String description, String source,
+			LocalDate creationDate, String state, String city, List<Followup> followups, Followup lastFollowup) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -45,6 +51,8 @@ public class Application {
 		this.creationDate = creationDate;
 		this.state = state;
 		this.city = city;
+		this.followups = followups;
+		this.lastFollowup = lastFollowup;
 	}
 
 	public Application(String title, Company company, String city, String state) {
@@ -54,7 +62,6 @@ public class Application {
 		this.state = state;
 	}
 
-
 	public Application(String title, String description, String source, User user, Company company) {
 		this.title = title;
 		this.description = description;
@@ -63,9 +70,8 @@ public class Application {
 		this.user = user;
 	}
 
-
 	public Application(String title, String description, String source, String city, String state, User user,
-			Company company) {
+			Company company, LocalDate creationDate) {
 		this.title = title;
 		this.description = description;
 		this.source = source;
@@ -73,8 +79,8 @@ public class Application {
 		this.state = state;
 		this.company = company;
 		this.user = user;
+		this.creationDate = creationDate;
 	}
-
 
 	public ObjectId getId() {
 		return id;
@@ -107,7 +113,7 @@ public class Application {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -115,7 +121,7 @@ public class Application {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getSource() {
 		return source;
 	}
@@ -147,8 +153,21 @@ public class Application {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
-	
+
+	public List<Followup> getFollowups() {
+		return followups;
+	}
+
+	public void setFollowups(List<Followup> followups) {
+		this.followups = followups;
+	}
+
+	public Followup getLastFollowup() {
+		return lastFollowup;
+	}
+
+	public void setLastFollowup(Followup lastFollowup) {
+		this.lastFollowup = lastFollowup;
+	}
 
 }
