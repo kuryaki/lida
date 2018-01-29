@@ -5,7 +5,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" href="/sec/logout">
+          <a class="nav-link" href="/sec/logout">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
@@ -28,7 +28,7 @@
                     <input type="text" list="companies" class="form-control" name="application-company" id="application-company" placeholder="Search..." autocomplete="off">
                     <datalist id="companies">
                       {{#companies}}
-                      <option value={{name}}>{{id}}</option>
+                      <option value="{{name}}">{{id}}</option>
                       {{/companies}}
                     </datalist>
                   </div>

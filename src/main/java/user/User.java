@@ -8,9 +8,6 @@ import org.mongodb.morphia.annotations.*;
 import application.Application;
 
 @Entity("users")
-@Indexes(
-    @Index(fields = @Field("name"))
-)
 public class User {
 	
 	@Id

@@ -53,6 +53,7 @@ public class ApplicationController {
 		// Session Data
 		String userId = req.session().attribute("userId");
 		
+		// Request Parameters
 		String title = req.queryParams("application-title");
 		String description = req.queryParams("application-description");
 		String companyName = req.queryParams("application-company");

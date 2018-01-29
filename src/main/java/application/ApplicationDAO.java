@@ -24,7 +24,6 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 		
 		Query<Application> query = datastore.createQuery(Application.class).filter("user", user);
 	
-		// TODO populate companies
 		List<Application> applications = query.asList(); 
 		
 		return applications;
