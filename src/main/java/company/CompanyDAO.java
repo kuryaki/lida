@@ -7,7 +7,6 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
-import application.Application;
 import lida.DB;
 
 public class CompanyDAO extends BasicDAO<Company, ObjectId> {

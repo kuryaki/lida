@@ -24,6 +24,12 @@ public class Contact {
 		this.email = email;
 	}
 
+	public Contact(String name, String phone, String email) {
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+	}
+
 	public ObjectId getId() {
 		return id;
 	}

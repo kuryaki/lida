@@ -6,6 +6,7 @@ import java.util.Map;
 
 import application.ApplicationController;
 import company.CompanyController;
+import contact.ContactController;
 import followup.FollowupController;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -44,9 +45,11 @@ public class Lida {
         post("/companies", (req, res) -> CompanyController.createCompany(req, res));
         
         // Followups
-        
         get("/followups/:applicationId", (req, res) -> FollowupController.createFollowUpForm(req, res));
         post("/followups/:applicationId", (req, res) -> FollowupController.createFollowUp(req, res));
+        
+        // Contacts
+        post("/contacts/:applicationId", (req, res) -> ContactController.createContact(req, res));
         
     }
 

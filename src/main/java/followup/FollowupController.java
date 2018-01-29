@@ -38,11 +38,6 @@ public class FollowupController {
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<Contact> contacts = new ArrayList<Contact>();
-		contacts.add(new Contact(new ObjectId(), "Behailu", "6411231234", "behailu@gmail.com"));
-		contacts.add(new Contact(new ObjectId(), "David", "6411231234", "david@gmail.com"));
-		
-		map.put("contacts", contacts);
 		map.put("application", application);
 		
 		return Lida.render(map, "followups.html");
@@ -64,7 +59,6 @@ public class FollowupController {
 		String contactId = req.queryParams("followup-contact");
 		String type = req.queryParams("followup-type");
 		String date = req.queryParams("followup-date");
-		
 		
 		Contact contact = ContactDAO.findById(contactId);
 		

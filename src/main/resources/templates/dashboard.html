@@ -25,95 +25,61 @@
       </ul>
     </div>
   </nav>
-  <div class="content-wrapper">
-    <div class="container-fluid">
-      <div clas="card">
-        <div class="card-header">
-          <i class="fa fa-bookmark"></i>
-          {{user.firstName}}`s current job applications
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-boostrap4">
-              <div class="row">
-                <div class="col-sm-12">
-                  <a href="/applications" class="btn btn-primary btn-lg btn-block" role="button">Create Job Application</a>
-                  <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                    style="width: 100%;">
-                    <thead>
-                      <tr role="row">
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending"
-                          style="width: 397px;">Position</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending"
-                          style="width: 195px;">Company</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending"
-                          style="width: 93px;">Location</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending"
-                          style="width: 182px;">Create date</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
-                          style="width: 163px;">Follow Up</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
-                          style="width: 163px;">Actions</th>
-                      </tr>
-                    </thead>
-                    {{#applications}}
-                    <tbody>
-                      <tr role="row">
-                        <td><a href="#">{{title}}</a></td>
-                        <td>{{company.name}}</td>
-                        <td>{{city}},{{state}}</td>
-                        <td>{{creationDate}}</td>
-                        <td>{{lastFollowup.date}}</td>
-                        <td>
-                          <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="/followups/{{id}}" class="btn btn-secondary" role="button">Follow Up</a>
-                          </div>
-                        </td>
-                      </tr>
-                      {{/applications}}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm12 col-md-5">
-                  <div id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                </div>
-                <div class="col-sm12 col-md-7">
-                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                    <ul class="pagination">
-                      <li class="paginate_button page-item previous disabled" id="dataTable_previous">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                      </li>
-                      <li class="paginate_button page-item active">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                      </li>
-                      <li class="paginate_button page-item ">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                      </li>
-                      <li class="paginate_button page-item ">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                      </li>
-                      <li class="paginate_button page-item ">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                      </li>
-                      <li class="paginate_button page-item ">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                      </li>
-                      <li class="paginate_button page-item ">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-                      </li>
-                      <li class="paginate_button page-item next" id="dataTable_next">
-                        <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                      </li>
-                    </ul>
+  <div class="container" id="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div clas="card">
+          <div class="card-header">
+            <i class="fa fa-bookmark"></i>
+            {{user.firstName}}`s current job applications
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-boostrap4">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <a href="/applications" class="btn btn-primary btn-lg btn-block" role="button">Create Job Application</a>
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                      style="width: 100%;">
+                      <thead>
+                        <tr role="row">
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending"
+                            style="width: 397px;">Position</th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending"
+                            style="width: 195px;">Company</th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending"
+                            style="width: 93px;">Location</th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending"
+                            style="width: 182px;">Create date</th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
+                            style="width: 163px;">Follow Up</th>
+                          <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending"
+                            style="width: 163px;">Actions</th>
+                        </tr>
+                      </thead>
+                      {{#applications}}
+                      <tbody>
+                        <tr role="row">
+                          <td><a href="/applications/{{id}}">{{title}}</a></td>
+                          <td>{{company.name}}</td>
+                          <td>{{city}},{{state}}</td>
+                          <td>{{creationDate}}</td>
+                          <td>{{lastFollowup.date}}</td>
+                          <td>
+                            <div class="btn-group" role="group" aria-label="Actions">
+                              <a href="/followups/{{id}}" class="btn btn-secondary" role="button">Follow Up</a>
+                            </div>
+                          </td>
+                        </tr>
+                        {{/applications}}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="card-footer">Updated yesterday at 11:59pm</div>
       </div>
     </div>
   </div>

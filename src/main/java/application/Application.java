@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 import company.Company;
+import contact.Contact;
 import followup.Followup;
 import user.User;
 
@@ -35,12 +36,15 @@ public class Application {
 	
 	@Reference
 	private Followup lastFollowup;
+	
+	@Reference
+	private List<Contact> contacts;
 
 	public Application() {
 	}
 
 	public Application(ObjectId id, User user, Company company, String title, String description, String source,
-			LocalDate creationDate, String state, String city, List<Followup> followups, Followup lastFollowup) {
+			LocalDate creationDate, String state, String city, List<Followup> followups, Followup lastFollowup, List<Contact> contacts) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -53,6 +57,7 @@ public class Application {
 		this.city = city;
 		this.followups = followups;
 		this.lastFollowup = lastFollowup;
+		this.contacts = contacts;
 	}
 
 	public Application(String title, Company company, String city, String state) {
@@ -168,6 +173,14 @@ public class Application {
 
 	public void setLastFollowup(Followup lastFollowup) {
 		this.lastFollowup = lastFollowup;
+	}
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 }

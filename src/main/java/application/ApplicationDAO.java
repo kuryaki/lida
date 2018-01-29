@@ -1,7 +1,6 @@
 package application;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -10,7 +9,6 @@ import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
 import company.Company;
-import followup.Followup;
 import lida.DB;
 import user.User;
 
@@ -52,5 +50,6 @@ public class ApplicationDAO extends BasicDAO<Application, ObjectId> {
 	public static void update(Application application) {
 		datastore.save(application);
 	}
+
 
 }

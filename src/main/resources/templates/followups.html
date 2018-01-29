@@ -37,7 +37,6 @@
                 <h1>{{title}} at {{company.name}}</h1>
                 <h5>{{city}}, {{state}} created {{creationDate}}</h5>
               </div>
-              {{/application}}
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-md-12">
@@ -50,7 +49,7 @@
                         {{/contacts}}
                       </select>
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Add Contact</button>
+                        <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#create-contact-modal">Add Contact</button>
                       </div>
                     </div>
                   </div>
@@ -84,6 +83,40 @@
               </div>
             </div>
         </form>
+        <!-- Modal -->
+        <div class="modal fade" id="create-contact-modal" tabindex="-1" role="dialog" aria-labelledby="create-contact-label" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form action="/contacts/{{id}}" method="post">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="create-contact-label">New contact for {{name}} at {{company.name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="contact-name">Name</label>
+                    <input type="text" class="form-control" name="contact-name" id="contact-name" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-phone">Phonenumber</label>
+                    <input type="text" class="form-control" name="contact-phone" id="contact-phone" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="text" class="form-control" name="contact-email" id="contact-email" autocomplete="off">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        {{/application}}
       </div>
     </div>
   </div>
