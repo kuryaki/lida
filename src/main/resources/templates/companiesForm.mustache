@@ -1,26 +1,11 @@
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/metisMenu.min.css">
-  <link rel="stylesheet" href="/css/sb-admin.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/jquery.flexdatalist.css">
-  <link rel="stylesheet" href="/css/app.css">
-  <title>Lida</title>
-</head>
-
-<body class="fixed-nav">
+{{> head }}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Companies</a>
+    <a class="navbar-brand" href="/sec/dashboard">Companies</a>
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" href="/logout">
+          <a class="nav-link" data-toggle="modal" href="/sec/logout">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
@@ -29,7 +14,7 @@
   <div id="container" class="container">
     <div class="row">
       <div class="col-sm-10 offset-sm-1">
-        <form id="companies-form" action="/companies" method="post">
+        <form id="companies-form" action="/sec/companies" method="post">
             <div class="card">
               <div class="card-header">Create Company</div>
               <div class="card-body">
@@ -47,7 +32,7 @@
               <div class="card-footer">
                 <div class="row justify-content-between no-gutters">
                   <button type="submit" class="btn btn-primary col-2">Create</button>
-                  <a href="/applications" class="btn btn-info col-2" role="button">Cancel</a>
+                  <a href="/sec/applications" class="btn btn-info col-2" role="button">Cancel</a>
                 </div>
               </div>
             </div>
@@ -55,13 +40,4 @@
       </div>
     </div>
   </div>
-
-  <script src="/js/jquery-3.3.1.js"></script>
-  <script src="/js/bootstrap.js"></script>
-  <script src="/js/metisMenu.min.js"></script>
-  <script src="/js/sb-admin-2.js"></script>
-  <script src="/js/jquery.flexdatalist.js"></script>
-  <script src="/js/app.js"></script>
-</body>
-
-</html>
+{{> foot }}

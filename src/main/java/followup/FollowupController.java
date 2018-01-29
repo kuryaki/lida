@@ -25,13 +25,6 @@ public class FollowupController {
 
 	public static String createFollowUpForm(Request req, Response res) {
 		
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
-		
 		String applicationId = req.params(":applicationId");
 		Application application = ApplicationDAO.findJobApplicationById(applicationId);
 		
@@ -40,17 +33,10 @@ public class FollowupController {
 		
 		map.put("application", application);
 		
-		return Lida.render(map, "followups.html");
+		return Lida.render(map, "followupsForm.mustache");
 	}
 
 	public static String createFollowUp(Request req, Response res) {
-		
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
 		
 		String applicationId = req.params(":applicationId");
 		Application application = ApplicationDAO.findJobApplicationById(applicationId);
@@ -72,7 +58,7 @@ public class FollowupController {
 		
 		ApplicationDAO.update(application);
 		
-		res.redirect("/dashboard");
+		res.redirect("/sec/dashboard");
 		return null;
 	}
 

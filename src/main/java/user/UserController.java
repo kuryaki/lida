@@ -27,14 +27,14 @@ public class UserController {
 	        req.session().attribute("userId", user.getId().toString());
 			
 	        // Redirect to Dashboard
-	        res.redirect("/dashboard");
+	        res.redirect("/sec/dashboard");
 	        return null;
 			
 		} else { // Bad Credentials
 			
 			// Render Template
 			map.put("error", "Bad Credentials");
-			return Lida.render(map, "home.html");
+			return Lida.render(map, "home.mustache");
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class UserController {
 		if (existingUser != null) { // existing
 			// Render Template
 			map.put("error", "User already created");
-			return Lida.render(map, "home.html");
+			return Lida.render(map, "home.mustache");
 		}
 		
 		// Use DAO to insert data into DB
@@ -65,7 +65,7 @@ public class UserController {
         req.session().attribute("userId", user.getId().toString());
 		
         // Redirect to Dashboard
-        res.redirect("/dashboard");
+        res.redirect("/sec/dashboard");
         return null;
 	}
 	
@@ -73,15 +73,25 @@ public class UserController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return Lida.render(map, "home.html");
+		return Lida.render(map, "home.mustache");
 	}
 
 	public static String logout(Request req, Response res) {
     		
 		req.session().removeAttribute("userId");
+		
 		res.redirect("/");
 		
 		return null;
+	}
+
+	public static void isAuthenticated(Request req, Response res) {
+		
+		// isAuthenticated
+		String userId = req.session().attribute("userId");
+		if (userId == null) {
+			res.redirect("/");
+		}
 	}
 
 }

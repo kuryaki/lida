@@ -11,36 +11,21 @@ public class CompanyController {
 
 	public static String createCompanyForm(Request req, Response res) {
 		
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
-		
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return Lida.render(map, "companies.html");
+		return Lida.render(map, "companiesForm.mustache");
 	}
 
 	public static String createCompany(Request req, Response res) {
-		
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
-		
+			
 		// Create HashMap for template
 		String name = req.queryParams("company-name");
 		String website = req.queryParams("company-website");
-		
-		
+			
 		CompanyDAO.createCompany(name, website);
 		
-		res.redirect("/applications");
+		res.redirect("/sec/applications");
 		return null;
 	}
 

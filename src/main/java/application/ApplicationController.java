@@ -17,12 +17,8 @@ public class ApplicationController {
 	
 	public static String getJobApplications(Request req, Response res) {
 		
-		// isAuthenticated
+		// Session Data
 		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
 		
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -33,7 +29,7 @@ public class ApplicationController {
 		map.put("user", user);
 		map.put("applications", applications);
 		
-		String result = Lida.render(map, "dashboard.html");
+		String result = Lida.render(map, "dashboard.mustache");
 		
 		return result;
 		
@@ -42,13 +38,6 @@ public class ApplicationController {
 
 	public static String createJobApplicationForm(Request req, Response res) {
 		
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
-		
 		// Create HashMap for template
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -56,17 +45,13 @@ public class ApplicationController {
 		
 		map.put("companies", companies);
 		
-		return Lida.render(map, "applications.html");
+		return Lida.render(map, "applicationsForm.mustache");
 	}
 
 	public static String createJobApplication(Request req, Response res) {
 		
-		// isAuthenticated
+		// Session Data
 		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
 		
 		// Create HashMap for template
 		String title = req.queryParams("application-title");
@@ -81,7 +66,7 @@ public class ApplicationController {
 		Company company = CompanyDAO.findCompanyByName(companyName);
 		ApplicationDAO.createApplication(title, description, source, city, state, user, company);
 		
-		res.redirect("/dashboard");
+		res.redirect("/sec/dashboard");
 		return null;
 	}
 

@@ -10,6 +10,7 @@ import contact.ContactController;
 import followup.FollowupController;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
+import user.User;
 import user.UserController;
 
 public class Lida {
@@ -32,24 +33,31 @@ public class Lida {
         get("/login", (req, res) -> UserController.loginAndRegisterScreen());
         post("/login", (req, res) -> UserController.login(req, res));
         
-        /// Logout
-        get("/logout", (req, res) -> UserController.logout(req, res));
+        // Authorization Middleware
+        before("/sec/*", (req, res) -> UserController.isAuthenticated(req, res));
         
-        // Applications
-        get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
-        get("/applications", (req, res) -> ApplicationController.createJobApplicationForm(req, res));
-        post("/applications", (req, res) -> ApplicationController.createJobApplication(req, res));
-        
-        // Companies
-        get("/companies", (req, res) -> CompanyController.createCompanyForm(req, res));
-        post("/companies", (req, res) -> CompanyController.createCompany(req, res));
-        
-        // Followups
-        get("/followups/:applicationId", (req, res) -> FollowupController.createFollowUpForm(req, res));
-        post("/followups/:applicationId", (req, res) -> FollowupController.createFollowUp(req, res));
-        
-        // Contacts
-        post("/contacts/:applicationId", (req, res) -> ContactController.createContact(req, res));
+        // Group Secure Layer
+        path("/sec", () -> {
+        	
+	        	// Logout
+	        	get("/logout", (req, res) -> UserController.logout(req, res));
+	        	
+	        	// Applications
+	        	get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
+	        	get("/applications", (req, res) -> ApplicationController.createJobApplicationForm(req, res));
+	        	post("/applications", (req, res) -> ApplicationController.createJobApplication(req, res));
+	        	
+	        	// Companies
+	        	get("/companies", (req, res) -> CompanyController.createCompanyForm(req, res));
+	        	post("/companies", (req, res) -> CompanyController.createCompany(req, res));
+	        	
+	        	// Followups
+	        	get("/followups/:applicationId", (req, res) -> FollowupController.createFollowUpForm(req, res));
+	        	post("/followups/:applicationId", (req, res) -> FollowupController.createFollowUp(req, res));
+	        	
+	        	// Contacts
+	        	post("/contacts/:applicationId", (req, res) -> ContactController.createContact(req, res));
+        });
         
     }
 

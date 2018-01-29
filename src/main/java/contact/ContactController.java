@@ -8,12 +8,6 @@ import spark.Response;
 public class ContactController {
 
 	public static String createContact(Request req, Response res) {
-		// isAuthenticated
-		String userId = req.session().attribute("userId");
-		if (userId == null) {
-			res.redirect("/");
-			return null;
-		}
 		
 		// Create HashMap for template
 		String applicationId = req.params(":applicationId");
@@ -30,7 +24,7 @@ public class ContactController {
 		
 		ApplicationDAO.update(application);
 		
-		res.redirect("/followups/"+applicationId);
+		res.redirect("/sec/followups/"+applicationId);
 		return null;
 	}
 
