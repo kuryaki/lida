@@ -53,7 +53,6 @@ public class ApplicationController {
 		// Session Data
 		String userId = req.session().attribute("userId");
 		
-		// Create HashMap for template
 		String title = req.queryParams("application-title");
 		String description = req.queryParams("application-description");
 		String companyName = req.queryParams("application-company");
@@ -68,6 +67,19 @@ public class ApplicationController {
 		
 		res.redirect("/sec/dashboard");
 		return null;
+	}
+
+	public static String findJobApplicationById(Request req, Response res) {
+		
+		String applicationId = req.params(":applicationId");
+		Application application = ApplicationDAO.findJobApplicationById(applicationId);
+		
+		// Create HashMap for template
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("application", application);
+		
+		return Lida.render(map, "applicationsDescribe.mustache");
 	}
 
 }

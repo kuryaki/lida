@@ -45,6 +45,7 @@ public class Lida {
 	        	// Applications
 	        	get("/dashboard", (req, res) -> ApplicationController.getJobApplications(req, res));
 	        	get("/applications", (req, res) -> ApplicationController.createJobApplicationForm(req, res));
+	        	get("/applications/:applicationId", (req, res) -> ApplicationController.findJobApplicationById(req, res));
 	        	post("/applications", (req, res) -> ApplicationController.createJobApplication(req, res));
 	        	
 	        	// Companies
